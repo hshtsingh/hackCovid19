@@ -1,6 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.accordion {
+  background-color: #6dbeed;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #dae9f2;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  border-bottom-color: black;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+</style>
+<meta charset="UTF-8">
+<title>FAQ's</title>
+<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+<link rel="stylesheet" href="style.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
@@ -10,6 +54,7 @@
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 </head>
+
 <body>
 
 <!-- HEADER =============================-->
@@ -22,14 +67,14 @@
 			<i class="fa fa-bars"></i>
 			<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a href="index.html" class="navbar-brand brand"> Inveswipe </a>
+			<a href="index.html" class="navbar-brand brand"> HackCovid 19 </a>
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.html">Home</a></li>
 				<li class="propClone"><a href="shop.html">Startups</a></li>
-				<li class="propClone"><a href="product.html">Investments</a></li>
-				<li class="propClone"><a href="checkout.html">Checkout</a></li>
+				<li class="propClone"><a href="product.html">Vaccination</a></li>
+				<li class="propClone"><a href="checkout.html">FAQ's</a></li>
 				<li class="propClone"><a href="contact.html">Contact</a></li>
 				<li class="propClone"><a href="login.html">Login</a></li>
 			</ul>
@@ -41,12 +86,13 @@
 			<div class="col-md-12 text-center">
 				<div class="text-pageheader">
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
-						 Checkout
+						 FAQ's
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </div>
 </header>
 
@@ -55,7 +101,7 @@
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center latestitems">MAKE PAYMENT</h1>
+			<h1 class="text-center latestitems">Frequently Asked Questions</h1>
 		</div>
 		<div class="wow-hr type_short">
 			<span class="wow-hr-h">
@@ -65,91 +111,92 @@
 			</span>
 		</div>
 	</div>
-	<div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
-		<form id="edd_checkout_cart_form" method="post">
-			<div id="edd_checkout_cart_wrap">
-				<table id="edd_checkout_cart" class="ajaxed">
-				<thead>
-				<tr class="edd_cart_header_row">
-					<th class="edd_cart_item_name">
-						 Item Name
-					</th>
-					<th class="edd_cart_item_price">
-						 Item Price
-					</th>
-					<th class="edd_cart_actions">
-						 Actions
-					</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
-					<td class="edd_cart_item_name">
-						<div class="edd_cart_item_image">
-							<img width="25" height="25" src="images/scorilo2-70x70.jpg" alt="">
-						</div>
-						<span class="edd_checkout_cart_item_title">Sudemy</span>
-					</td>
-					<td class="edd_cart_item_price">
-						 Rs 138
-					</td>
-					<td class="edd_cart_actions">
-						<a class="edd_cart_remove_item_btn" href="#">Remove</a>
-					</td>
-				</tr>
-				</tbody>
-				<tfoot>
-				<tr class="edd_cart_footer_row">
-					<th colspan="5">
-						<a class="edd-cart-saving-button edd-submit button " id="edd-save-cart-button" href="#">Save Cart</a>
-					</th>
-				</tr>
-				<tr class="edd_cart_footer_row edd_cart_discount_row" style="display:none;">
-					<th colspan="5" class="edd_cart_discount">
-					</th>
-				</tr>
-				<tr class="edd_cart_footer_row">
-					<th colspan="5" class="edd_cart_total">
-						 Total: <span class="edd_cart_amount" data-subtotal="11.99" data-total="11.99">Rs 138</span>
-					</th>
-				</tr>
-				</tfoot>
-				</table>
-			</div>
-		</form>
-		<div id="edd_checkout_form_wrap" class="edd_clearfix">
-			<form id="edd_purchase_form" class="edd_form" action="#" method="POST">
-				<fieldset id="edd_checkout_user_info">
-					<legend>Personal Info</legend>
-					<p id="edd-email-wrap">
-						<label class="edd-label" for="edd-email">
-						Email Address <span class="edd-required-indicator">*</span></label>
-						<input class="edd-input required" type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
-					</p>
-					<p id="edd-first-name-wrap">
-						<label class="edd-label" for="edd-first">
-						First Name <span class="edd-required-indicator">*</span>
-						</label>
-						<input class="edd-input required" type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
-					</p>
-					<p id="edd-last-name-wrap">
-						<label class="edd-label" for="edd-last">
-						Last Name </label>
-						<input class="edd-input" type="text" name="edd_last" id="edd-last" placeholder="Last name" value="">
-					</p>
-				</fieldset>
-				<fieldset id="edd_purchase_submit">
-					<p id="edd_final_total_wrap">
-						<strong>Purchase Total:</strong>
-						<span class="edd_cart_amount" data-subtotal="11.99" data-total="11.99">Rs 138</span>
-					</p>
-					<input type="hidden" name="edd_action" value="purchase">
-					<input type="hidden" name="edd-gateway" value="manual">
-					<input type="submit" class="edd-submit button" id="edd-purchase-button" name="edd-purchase" value="Purchase">
-				</fieldset>
-			</form>
-		</div>
-	</div>
+	<div class="container">
+	
+ 
+  <h2>FAQ's</h2>
+  
+  <button class="accordion">What is COVID-19?</button>
+<div class="panel">
+  <p>COVID-19 is the disease caused by a new coronavirus called SARS-CoV-2.  WHO first learned of this new virus on 31 December 2019, following a report of a cluster of cases of ‘viral pneumonia’ in Wuhan, People’s Republic of China.</p>
+</div>
+
+<button class="accordion">What are the symptoms of COVID-19?</button>
+<div class="panel">
+  <p>The most common symptoms of COVID-19 are</p>
+
+<p>Fever
+Dry cough
+Fatigue</p>
+<p>Other symptoms that are less common and may affect some patients include:</p>
+
+<p>Loss of taste or smell,
+Nasal congestion,
+Conjunctivitis (also known as red eyes)
+Sore throat,
+Headache,
+Muscle or joint pain,
+Different types of skin rash,
+Nausea or vomiting,
+Diarrhea,
+Chills or dizziness.
+ 
+
+Symptoms of severe COVID‐19 disease include:
+
+Shortness of breath,
+Loss of appetite,
+Confusion,
+Persistent pain or pressure in the chest,
+High temperature (above 38 °C).
+Other less common symptoms are:
+
+Irritability,
+Confusion,
+Reduced consciousness (sometimes associated with seizures),
+Anxiety,
+Depression,
+Sleep disorders,
+More severe and rare neurological complications such as strokes, brain inflammation, delirium and nerve damage.
+People of all ages who experience fever and/or cough associated with difficulty breathing or shortness of breath, chest pain or pressure, or loss of speech or movement should seek medical care immediately. If possible, call your health care provider, hotline or health facility first, so you can be directed to the right clinic.</p>
+</div>
+
+<button class="accordion">Are there long term effects of COVID-19?</button>
+<div class="panel">
+  <p>Some people who have had COVID-19, whether they have needed hospitalization or not, continue to experience symptoms, including fatigue, respiratory and neurological symptoms.</p>
+
+<p>WHO is working with our Global Technical Network for Clinical Management of COVID-19, researchers and patient groups around the world to design and carry out studies of patients beyond the initial acute course of illness to understand the proportion of patients who have long term effects, how long they persist, and why they occur.  These studies will be used to develop further guidance for patient care. </p>
+</div>
+<button class="accordion">Are antibiotics effective in preventing or treating COVID-19?</button>
+<div class="panel">
+  <p>Antibiotics do not work against viruses; they only work on bacterial infections. COVID-19 is caused by a virus, so antibiotics do not work. Antibiotics should not be used as a means of prevention or treatment of COVID-19.</p>
+
+<p>In hospitals, physicians will sometimes use antibiotics to prevent or treat secondary bacterial infections which can be a complication of COVID-19 in severely ill patients. They should only be used as directed by a physician to treat a bacterial infection.</p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+  
+</div>
+
+ 
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script  src="function.js"></script>
+	
 </div>
 </section>
 

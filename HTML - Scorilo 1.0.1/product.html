@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vaccine centres and availability</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER =============================-->
+<header class="item header margin-top-0">
+<div class="wrapper">
+	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+			<i class="fa fa-bars"></i>
+			<span class="sr-only">Toggle navigation</span>
+			</button>
+			<a href="index.html" class="navbar-brand brand"> HACKCOVID 19</a>
+		</div>
+		<div id="navbar-collapse-02" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="propClone"><a href="index.html">Home</a></li>
+				<li class="propClone"><a href="shop.html">Startups</a></li>
+				<li class="propClone"><a href="product.html">Vaccination</a></li>
+				<li class="propClone"><a href="checkout.html">Checkout</a></li>
+				<li class="propClone"><a href="contact.html">Contact</a></li>
+				<li class="propClone"><a href="login.html">Login</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<div class="text-pageheader">
+					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
+						 Find Vaccine
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+
+<!-- CONTENT =============================-->
+<div class="container">
+        <h2>Check your nearest vaccination center and slots availability</h2>
+        <div class="form-group">
+            <label for="pin">Search By Pin:</label>
+            <input type="number" maxlength="6" class="form-control" id="pin" placeholder="Enter pin" name="pin">
+        </div>
+
+        <button id="searchbtn" class="btn btn-default">Search</button>
+
+        <button id="searchbtn1" class="btn btn-default">Search By District</button>
+
+        <table class="table" id="session">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Pin code</th>
+                    <th>Date</th>
+                    <th>18+</th>
+                    <th>45+</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var date = new Date();
+        var today = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        $("#searchbtn").click(function () {
+            var pin = $('#pin').val();
+            if (pin == '' || pin == undefined) {
+                alert('please enter pin code');
+                return;
+            }
+            $.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=" + pin +
+                "&date=" + today,
+                function (data, status) {
+                    if (status) {
+                        var sessions = data.sessions ? data.sessions : [];
+                        if (sessions) {
+                            for (var i = 0; i<=sessions.length; i++) {
+                                var classname = "info";
+                                if (i%2 == 0) {
+                                    classname = "success"
+                                }
+                                $('#session tbody').append("<tr class=" + classname + "><td>" + sessions[i]
+                                    .name + "</td><td>" + sessions[i].pincode + "</td><td>" + sessions[i].date + "</td><td>" + sessions[i].available_capacity + "</td><td>" +
+                                    sessions[i].available_capacity_dose1 + "</td></tr>")
+                            }
+                        }
+                    } else {
+                        alert('error');
+                    }
+
+                });
+        });
+
+        $("#searchbtn1").click(function () {
+            var district_id = "89";
+            $.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=" +
+                district_id + "&date=" + today,
+                function (data, status) {
+                    if (status) {
+                        var sessions = data.sessions ? data.sessions : [];
+                        if (sessions) {
+                            for (var i = 0; i <= sessions.length; i++) {
+                                var classname = "info";
+                                if (i % 2 == 0) {
+                                    classname = "success"
+                                }
+
+                                $('#session tbody').append("<tr class=" + classname + "><td>" + sessions[i]
+                                    .name + "</td><td>" + sessions[i].pincode + "</td><td>" + sessions[i].date + "</td><td>" + sessions[i].available_capacity + "</td><td>" +
+                                    sessions[i].available_capacity_dose1 + "</td></tr>")
+                            }
+                        }
+                    } else {
+                        alert('error');
+                    }
+                });
+        });
+    </script>
+
+<!-- CALL TO ACTION =============================-->
+
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+	<div class="container">
+		<div class="row">
+			<p class="footernote">
+				 Connect with Scorilo
+			</p>
+			<ul class="social-iconsfooter">
+				<li><a href="#"><i class="fa fa-phone"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+			</ul>
+			<p>
+				 &copy; 2021 HACKCOVID 19<br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<!-- Load JS here for greater good =============================-->
+<script src="js/jquery-.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/anim.js"></script>
+
+</body>
+</html>
